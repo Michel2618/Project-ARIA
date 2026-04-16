@@ -41,3 +41,15 @@
 
 ### System Tab -> Services
 * Ensure **AirPlay** and **Bluetooth Speaker** are checked.
+
+## 🧪 The "Bare Metal" Diagnostic Tool (`Hardware_Test_Imperial_March.ino`)
+
+While this streamer relies on the open-source Squeezelite-ESP32 OS, this repository includes a custom C++ Arduino script. 
+
+**Why is this here?**
+When building custom I2S audio hardware, it can be extremely difficult to tell if a "no audio" issue is caused by a Wi-Fi network firewall, a software bug, or a physical soldering mistake. 
+
+This script is a hardware diagnostic tool. Flashing this `.ino` file via the Arduino IDE completely wipes the Squeezelite OS and tests the raw metal. It forces the ESP32 to manually generate the I2S clock and play a hardcoded 16-bit melody (The Star Wars Imperial March). 
+
+* **If it plays the melody:** Your hardware, soldering, DAC, and pins (15, 16, 17) are 100% flawless. You can safely reinstall the Squeezelite firmware knowing any future issues are purely software/network related.
+* **If it is silent:** You have a physical hardware issue (bad ground, cold solder, or a dead DAC chip).
